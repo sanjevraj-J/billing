@@ -4,6 +4,10 @@
 int cid = 0;
 int pid = 0;
 int bid = 0;
+int Admin;
+int customer;
+
+
 
 struct Product {
     char proName[50];
@@ -36,6 +40,7 @@ void createCustomer() {
     printf("=====> Data Entered Successfully <====\n");
     cid++;
 }
+
 
 void displayCustomers() {
     for (int i = 0; i < cid; i++) {
@@ -148,19 +153,50 @@ void displayAllBills() {
 }
 
 int main() {
+    int n;
     while (1) {
-        int n;
-        printf("\n========= MENU =========\n");
-        printf("1) Create Customer\n");
-        printf("2) Display Customers\n");
-        printf("3) Enter Product\n");
-        printf("4) Display Products\n");
-        printf("5) Create Bill\n");
-        printf("6) Identify Customer by ID\n");
-        printf("7) Display All Bills\n");
+        printf("\n====== Main Menu ======\n");
+        printf("1) Admin\n");
+        printf("2) Customer\n");
         printf("0) Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &n);
+        int m;
+        scanf("%d", &m);
+
+        if (m == 1) {
+            int password;
+            printf("Enter admin password: ");
+            scanf("%d", &password);
+            if (password != 12345) {
+                printf("Invalid password.\n");
+                continue;
+            }
+
+            printf("\nAdmin Menu:\n");
+            printf("3) Enter Product\n");
+            printf("4) Display Products\n");
+            printf("6) Identify Customer by ID\n");
+            printf("7) Display All Bills\n");
+            printf("0) Back to Main Menu\n");
+            printf("Enter your choice: ");
+            scanf("%d", &n);
+
+        } else if (m == 2) {
+            printf("\nCustomer Menu:\n");
+            printf("1) Create Customer\n");
+            printf("2) Display Customers\n");
+            printf("5) Create Bill\n");
+            printf("7) Display All Bills\n");
+            printf("0) Back to Main Menu\n");
+            printf("Enter your choice: ");
+            scanf("%d", &n);
+        } else if (m == 0) {
+            printf("Exiting program. Thank you!\n");
+            break;
+        } else {
+            printf("Invalid choice. Try again.\n");
+            continue;
+        }
 
         switch (n) {
             case 1:
@@ -185,10 +221,11 @@ int main() {
                 displayAllBills();
                 break;
             case 0:
-                printf("Exiting Program. Thank You!\n");
-                return 0;
+                printf("Returning to Main Menu.\n");
+                break;
             default:
-                printf("Invalid choice. Try again.\n");
+                printf("Invalid choice.\n");
         }
     }
+    return 0;
 }
